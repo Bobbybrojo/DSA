@@ -1,3 +1,5 @@
+import sys
+
 expression = [char for char in input()]
 
 # Calculate the value of the expression given the value of letters
@@ -31,6 +33,6 @@ def backtrack(letter_vals):
         backtrack(letter_vals)
         letter_vals.pop()
 
-max_value = 0
+max_value = -sys.maxsize
 backtrack([])
 print(max_value)
