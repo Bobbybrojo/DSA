@@ -37,7 +37,7 @@ def dfs(r: int, c: int):
         if can_go(nr, nc):
             dfs(nr, nc)
 
-answer = (0, 0)
+answer = (1, 0)
 # Find number of connected components not submerged for each k
 for k in range(1, max_k):
     sink_grid()
