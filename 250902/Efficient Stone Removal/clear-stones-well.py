@@ -3,13 +3,11 @@ from collections import deque
 n, k, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 
-r = []
-c = []
+starting_points = []
 for _ in range(k):
     ri, ci = map(int, input().split())
-    r.append(ri - 1)
-    c.append(ci - 1)
-starting_points = zip(r, c)
+    starting_points.append((ri - 1, ci - 1))
+
 
 # Returns whether the point is in the grid (0-indexed)
 def in_range(r, c):
@@ -18,7 +16,7 @@ def in_range(r, c):
 # Returns the number of cells that can be visited from the given starting points
 def bfs(starting_points):
     
-    visited = set()
+    visited = set(starting_points)
     q = deque(starting_points)
 
     while q:
@@ -51,7 +49,7 @@ def backtracking(count, last_idx):
 
     for i in range(last_idx + 1, len(stones)):
         stone = stones[i]
-        
+
         grid[stone[0]][stone[1]] = 0
         backtracking(count + 1, i)
         grid[stone[0]][stone[1]] = 1
