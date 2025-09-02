@@ -50,6 +50,7 @@ def bfs(points):
             latest_size = 0
         
         if time == max_time and grid[r][c] == 1:
+            grid[r][c] = 0
             latest_size += 1
 
         for dr, dc in dirs:
