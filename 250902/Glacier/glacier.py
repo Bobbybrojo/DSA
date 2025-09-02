@@ -49,7 +49,7 @@ def bfs(points):
             max_time = time
             latest_size = 0
         
-        if time == max_time:
+        if time == max_time and grid[r][c] == 1:
             latest_size += 1
 
         for dr, dc in dirs:
