@@ -13,7 +13,7 @@ def positive_rect(rect):
 
     for r in range(r1, r2 + 1):
         for c in range(c1, c2 + 1):
-            if grid[r][c] < 0:
+            if grid[r][c] <= 0:
                 return False
 
     return True
