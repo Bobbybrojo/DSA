@@ -3,26 +3,12 @@ import sys
 n, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 
-rect1 = []
-for r1 in range(n - 1):
-    for c1 in range(m - 1):
-        for r2 in range(r1, n - 1):
-            for c2 in range(c1, m - 1):
-                rect1.append((r1, c1, r2, c2))
-
-rect2 = []
-for r1r1, r1c1, r1r2, r1c2 in rect1:
-    for r1 in range(r1r2 + 1, n):
+rects = []
+for r1 in range(n):
+    for c1 in range(m):
         for r2 in range(r1, n):
-            for c1 in range(m):
-                for c2 in range(c1, m):
-                    rect2.append((r1, c1, r2, c2))
-
-    for c1 in range(r1c2 + 1, m):
-        for c2 in range(c1, m):
-            for r1 in range(n):
-                for r2 in range(r1, n):
-                    rect2.append((r1, c1, r2, c2))
+            for c2 in range(c1, m):
+                rects.append((r1, c1, r2, c2))
 
 def rect_area_sum(rect):
     r1, c1, r2, c2 = rect
@@ -33,11 +19,16 @@ def rect_area_sum(rect):
 
     return area_sum
 
+def rects_overlap(rect1, rect2):
+    r1a, c1a, r2a, c2a = rect1
+    r1b, c1b, r2b, c2b = rect2
+
+    return not (r2a < r1b or r2b < r1a or c2a < c1b or c2b < c1a)
+
 max_sum = -sys.maxsize
-for i in range(len(rect1)):
-    r1 = rect_area_sum(rect1[i])
-    r21 = rect_area_sum(rect2[i])
-    r22 = rect_area_sum(rect2[len(rect2) // 2 + i])
-    max_sum = max(r1 + r21, r1 + r22, max_sum)
+for i in range(len(rects)):
+    for j in range(i + 1, len(rects)):
+        if not rects_overlap(rects[i], rects[j]):
+            max_sum = max(max_sum, rect_area_sum(rects[i]) + rect_area_sum(rects[j]))
 
 print(max_sum)
