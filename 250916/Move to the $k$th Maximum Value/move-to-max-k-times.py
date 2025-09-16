@@ -18,7 +18,7 @@ def find_next_pos(sr, sc):
     start_num = grid[sr][sc]
     next_pos = (-1, -1, -1) # (r, c, value)
 
-    visited = set()
+    visited = set([(sr, sc)])
     q = deque([(sr, sc)])
     while q:
         r, c = q.popleft()
@@ -34,10 +34,10 @@ def find_next_pos(sr, sc):
                 val = grid[nr][nc]
                 if val > next_pos[2]:
                     next_pos = (nr, nc, val)
-                if val == next_pos[2]:
+                elif val == next_pos[2]:
                     if nr < next_pos[0]:
                         next_pos = (nr, nc, val)
-                    if nr == next_pos[0] and c < next_pos[1]:
+                    elif nr == next_pos[0] and nc < next_pos[1]:
                         next_pos = (nr, nc, val)
 
     return next_pos[0:2]
