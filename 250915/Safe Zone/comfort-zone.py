@@ -16,14 +16,18 @@ def can_go_to(r, c, k):
     return True
 
 
-def dfs(r, c, k):
+def dfs(sr, sc, k):
+    stack = [(sr, sc)]
 
-    for dr, dc in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
-        nr, nc = r + dr, c + dc
+    while stack:
+        r, c = stack.pop()
 
-        if (nr, nc) not in visited and can_go_to(nr, nc, k):
-            visited.add((nr, nc))
-            dfs(nr, nc, k)
+        for dr, dc in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+            nr, nc = r + dr, c + dc
+
+            if (nr, nc) not in visited and can_go_to(nr, nc, k):
+                visited.add((nr, nc))
+                stack.append((nr, nc))
 
 
 most_safe_zones = (1, 0) # (k, safe_zones) at k where safe zones is maximized
