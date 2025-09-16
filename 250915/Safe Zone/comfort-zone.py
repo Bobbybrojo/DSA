@@ -26,7 +26,7 @@ def dfs(r, c, k):
             dfs(nr, nc, k)
 
 
-most_safe_zones = (0, 0) # (k, safe_zones) at k where safe zones is maximized
+most_safe_zones = (1, 0) # (k, safe_zones) at k where safe zones is maximized
 for k in range(1, max_k):
     safe_zones = 0
     visited = set()
@@ -35,6 +35,7 @@ for k in range(1, max_k):
     for r in range(n):
         for c in range(m):
             if grid[r][c] - k > 0 and (r, c) not in visited:
+                visited.add((r, c))
                 safe_zones += 1 
                 dfs(r, c, k)
 
