@@ -11,7 +11,7 @@ for _ in range(n):
 def can_go_to(r, c, k):
     if r < 0 or c < 0 or r >= n or c >= m:
         return False
-    if grid[r][c] - k <= 0 or (r, c) in visited:
+    if grid[r][c] - k <= 0:
         return False
     return True
 
@@ -21,7 +21,7 @@ def dfs(r, c, k):
     for dr, dc in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
         nr, nc = r + dr, c + dc
 
-        if can_go_to(nr, nc, k):
+        if (nr, nc) not in visited and can_go_to(nr, nc, k):
             visited.add((nr, nc))
             dfs(nr, nc, k)
 
@@ -35,7 +35,7 @@ for k in range(1, max_k):
     for r in range(n):
         for c in range(m):
             if grid[r][c] - k > 0 and (r, c) not in visited:
-                visited.add((r, c))
+                visited.add(e)
                 safe_zones += 1 
                 dfs(r, c, k)
 
