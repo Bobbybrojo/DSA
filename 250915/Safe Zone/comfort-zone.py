@@ -35,7 +35,7 @@ for k in range(1, max_k):
     for r in range(n):
         for c in range(m):
             if grid[r][c] - k > 0 and (r, c) not in visited:
-                visited.add(e)
+                visited.add((r, c))
                 safe_zones += 1 
                 dfs(r, c, k)
 
