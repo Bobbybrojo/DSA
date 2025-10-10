@@ -1,0 +1,6 @@
+# [Filling a Rectangle](https://www.codetree.ai/trails/complete/curated-cards/challenge-rectangle-fill)
+
+|Type|Problem XP|Difficulty|
+|---|---|---|
+|[Trail 4 / Dynamic Programming I / Call themselves that have same shape and merge](https://www.codetree.ai/trail-info/intermediate-low/)|[[Challenge]Filling a Rectangle](https://www.codetree.ai/trails/complete/curated-cards/challenge-rectangle-fill/)|Easy|
+
