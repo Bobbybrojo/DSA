@@ -10,6 +10,9 @@ def backtrack(pos, cnt):
 
     max_jump_dist = num[pos]
     for i in range(1, max_jump_dist + 1):
+        if pos + i >= n:
+            break
+            
         backtrack(pos + i, cnt + 1)
 
 
