@@ -4,11 +4,11 @@ def backtrack(curr):
     global min_valid_seq
 
     if len(curr) == n:
-        min_valid_seq = min(min_valid_seq, int("".join(curr)))
+        min_valid_seq = min(min_valid_seq, curr)
         return
 
     for i in range(4, 6 + 1):
-        curr.append(str(i))
+        curr += str(i)
 
         is_invalid = False
         for l in range(2, len(curr) + 1, 2):
@@ -20,9 +20,9 @@ def backtrack(curr):
         if not is_invalid:
             backtrack(curr)
 
-        curr.pop()
+        curr = curr[:-1]
 
 
-min_valid_seq = int("6" * n)
-backtrack([])
+min_valid_seq = "6" * n
+backtrack("")
 print(min_valid_seq)
