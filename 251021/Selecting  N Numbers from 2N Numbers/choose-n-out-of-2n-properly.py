@@ -2,34 +2,32 @@ import sys
 
 n = int(input())
 num = list(map(int, input().split()))
+num_set = set(num)
 
 # Approach: backtracking
-# Partition the numbers into two running lists by alternating adding to each list
+# find all combinations of n numbers from 2n total
+# then compare difference with sum of combination and 
+# sum of set diff of num list and combination
 
-def backtracking(curr1, curr2, cnt):
-    global min_diff
-
-    if len(curr1) == n and len(curr2) == n:
-        min_diff = min(min_diff, abs(sum(curr1) - sum(curr2)))
+def backtracking(curr, last_idx):
+    if len(curr) == n:
+        partitions.append(curr[:])
         return
 
-    for i in range(0, 2 * n):
+    for i in range(last_idx + 1, 2 * n):
         value = num[i]
-        if i not in visited:
-            visited.add(i)
+        curr.append(value)
+        backtracking(curr, i)
+        curr.pop()
+    return
 
-            if cnt % 2 == 0:
-                curr1.append(value)
-                backtracking(curr1, curr2, cnt + 1)
-                curr1.pop()
-            else: # cnt % 2 == 1
-                curr2.append(value)
-                backtracking(curr1, curr2, cnt + 1)
-                curr2.pop()
+# Fill the partitions list
+partitions = []
+backtracking([], -1)
 
-            visited.remove(i)
-
-visited = set()
+# Find the min difference from the partitions
 min_diff = sys.maxsize
-backtracking([], [], 0)
+for p1 in partitions:
+    p2 = num_set - set(p1)
+    min_diff = min(min_diff, (abs(sum(p1) - sum(p2))))
 print(min_diff)
