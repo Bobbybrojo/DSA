@@ -2,7 +2,6 @@ import sys
 
 n = int(input())
 num = list(map(int, input().split()))
-num_set = set(num)
 
 # Approach: backtracking
 # find all combinations of n numbers from 2n total
@@ -15,8 +14,7 @@ def backtracking(curr, last_idx):
         return
 
     for i in range(last_idx + 1, 2 * n):
-        value = num[i]
-        curr.append(value)
+        curr.append(i)
         backtracking(curr, i)
         curr.pop()
     return
@@ -26,8 +24,9 @@ partitions = []
 backtracking([], -1)
 
 # Find the min difference from the partitions
+indices = set([i for i in range(0, 2 * n)])
 min_diff = sys.maxsize
 for p1 in partitions:
-    p2 = num_set - set(p1)
-    min_diff = min(min_diff, (abs(sum(p1) - sum(p2))))
+    p2 = indices - set(p1)
+    min_diff = min(min_diff, (abs(sum(map(lambda i: num[i], p1)) - sum(map(lambda i: num[i], p2)))))
 print(min_diff)
