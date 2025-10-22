@@ -4,37 +4,27 @@ n = int(input())
 A = [list(map(int, input().split())) for _ in range(n)]
 
 # backtracking: O(nP(n,n))
-def backtrack(curr, prev_idx):
-    if len(curr) == n and A[curr[-1]][0] != 0:
-        curr.append(0)
-        permutations.append(curr[:])
-        curr.pop()
+def backtrack(curr_sum, prev_idx, cnt):
+    global min_sum
+
+    if cnt == n:
+        if A[prev_idx][0] != 0:
+            total_cost = curr_sum + A[prev_idx][0]
+            min_sum = min(min_sum, total_cost)
         return
 
     for i in range(0, n):
         if not visited[i] and A[prev_idx][i] != 0:
             visited[i] = True
-            curr.append(i)
-            backtrack(curr, i)
+            backtrack(curr_sum + A[prev_idx][i], i, cnt + 1)
             visited[i] = False
-            curr.pop()
     return
 
-# Fill the permutations list with all orderings of visiting nodes
-visited = [False] * n
-visited[0] = True
-permutations = []
-backtrack([0], 0)
 
 # Calculate min cost from all permutations
+visited = [False] * n
+visited[0] = True
 min_sum = sys.maxsize
-for perm in permutations:
-    perm_sum = 0
-    valid = True
-    for i in range(1, len(perm)):
-        grid_val = A[perm[i - 1]][perm[i]]
-        perm_sum += grid_val
+backtrack(0, 0, 1)
 
-    if perm_sum < min_sum:
-        min_sum = perm_sum
 print(min_sum)
