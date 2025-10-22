@@ -5,7 +5,7 @@ A = [list(map(int, input().split())) for _ in range(n)]
 
 # backtracking: O(nP(n,n))
 def backtrack(curr, prev_idx):
-    if len(curr) == n:
+    if len(curr) == n and A[curr[-1]][0] != 0:
         curr.append(0)
         permutations.append(curr[:])
         curr.pop()
