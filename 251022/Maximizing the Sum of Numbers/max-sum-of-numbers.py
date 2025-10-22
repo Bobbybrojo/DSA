@@ -2,40 +2,49 @@ n = int(input())
 grid = [list(map(int, input().split())) for _ in range(n)]
 
 
-# THIRD SOLUTION: Optimized backtracking (Only backtrack on possible solutions)
-# Runtime: O(P(n^2, n) * n)
-visited_col = [False] * n
-visited_row = [False] * n
+# THIRD Attempt: Greedy: O(n^4)
+# Select the maximum number on the grid
+# Then select the next maximum number not in previous r, c
+# perform this n times
 
-def backtracking(curr):
-    global max_sum
 
-    if len(curr) == n:
-        max_sum = max(max_sum, sum(curr)) # O(n) for summing list for each result
-        return
-
-    for c in range(n):
-        if visited_col[c]:
-            continue
-
+result = 0
+starting_rc = [[False] * n for _ in range(n)]
+# Perform n times
+for _ in range(n):
+    visited_rows = [False] * n
+    visited_cols = [False] * n
+    some_sum = 0
+    # Find n elements
+    for i in range(n):
+        max_elem_pos = (0, 0)
+        # Search through grid for the next max
         for r in range(n):
-            if visited_row[r]:
+            if visited_rows[r]:
                 continue
+
+            for c in range(n):
+                if visited_cols[c]:
+                    continue
+
+                if grid[r][c] > grid[max_elem_pos[0]][max_elem_pos[1]]:
+                    if i == 0 and starting_rc[r][c]:
+                        continue
+                    elif i == 0:
+                        starting_rc[r][c] = True
+                    max_elem_pos = (r, c)
+
+        
+        visited_rows[max_elem_pos[0]] = True
+        visited_cols[max_elem_pos[1]] = True
+        some_sum += grid[max_elem_pos[0]][max_elem_pos[1]]
+    
+    result = max(result, some_sum)
+
+print(result)
+        
             
-            visited_row[r] = True
-            visited_col[c] = True
-            curr.append(grid[r][c])          
 
-            backtracking(curr)
-
-            visited_row[r] = False
-            visited_col[c] = False
-            curr.pop()
-    return
-
-max_sum = -1
-backtracking([])
-print(max_sum)
 
 
 # RESULT: Does not cover the entire solution space
@@ -57,6 +66,8 @@ print(max_sum)
 #     max_sum = max(max_sum, sum(curr))
 #     print(curr, sum(curr))
 # print(max_sum)
+
+##############################################
 
 # FIRST SOLUTION
 # Brute force backtracking: O(P(n, n) * n) : PASSES
