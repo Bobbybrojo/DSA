@@ -4,7 +4,7 @@ n = int(input())
 A = [list(map(int, input().split())) for _ in range(n)]
 
 # backtracking: O(nP(n,n))
-def backtrack(curr):
+def backtrack(curr, prev_idx):
     if len(curr) == n:
         curr.append(0)
         permutations.append(curr[:])
@@ -12,10 +12,10 @@ def backtrack(curr):
         return
 
     for i in range(0, n):
-        if not visited[i]:
+        if not visited[i] and A[prev_idx][i] != 0:
             visited[i] = True
             curr.append(i)
-            backtrack(curr)
+            backtrack(curr, i)
             visited[i] = False
             curr.pop()
     return
@@ -24,7 +24,7 @@ def backtrack(curr):
 visited = [False] * n
 visited[0] = True
 permutations = []
-backtrack([0])
+backtrack([0], 0)
 
 # Calculate min cost from all permutations
 min_sum = sys.maxsize
@@ -33,16 +33,7 @@ for perm in permutations:
     valid = True
     for i in range(1, len(perm)):
         grid_val = A[perm[i - 1]][perm[i]]
-
-        if grid_val == 0:
-            valid = False
         perm_sum += grid_val
-
-        if not valid:
-            break
-
-    if not valid:
-        continue
 
     if perm_sum < min_sum:
         min_sum = perm_sum
