@@ -18,6 +18,7 @@ for _ in range(n):
     # Find n elements
     for i in range(n):
         max_elem_pos = (0, 0)
+        max_val = 0
         # Search through grid for the next max
         for r in range(n):
             if visited_rows[r]:
@@ -27,14 +28,15 @@ for _ in range(n):
                 if visited_cols[c]:
                     continue
 
-                if grid[r][c] > grid[max_elem_pos[0]][max_elem_pos[1]]:
-                    if i == 0 and starting_rc[r][c]:
-                        continue
-                    elif i == 0:
-                        starting_rc[r][c] = True
+                if i == 0 and starting_rc[r][c]:
+                    continue
+
+                if grid[r][c] > max_val:
+                    max_val = grid[r][c]
                     max_elem_pos = (r, c)
 
-        
+        if i == 0:
+            starting_rc[max_elem_pos[0]][max_elem_pos[1]] = True
         visited_rows[max_elem_pos[0]] = True
         visited_cols[max_elem_pos[1]] = True
         some_sum += grid[max_elem_pos[0]][max_elem_pos[1]]
