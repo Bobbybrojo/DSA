@@ -4,7 +4,6 @@ n = int(input())
 A = [list(map(int, input().split())) for _ in range(n)]
 
 # backtracking: O(nP(n,n))
-
 def backtrack(curr):
     if len(curr) == n:
         curr.append(0)
@@ -31,9 +30,19 @@ backtrack([0])
 min_sum = sys.maxsize
 for perm in permutations:
     perm_sum = 0
-    
+    valid = True
     for i in range(1, len(perm)):
-        perm_sum += A[perm[i - 1]][perm[i]]
+        grid_val = A[perm[i - 1]][perm[i]]
+
+        if grid_val == 0:
+            valid = False
+        perm_sum += grid_val
+
+        if not valid:
+            break
+
+    if not valid:
+        continue
 
     if perm_sum < min_sum:
         min_sum = perm_sum
