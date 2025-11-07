@@ -31,4 +31,7 @@ def bfs():
                 a[nr][nc] = 0
                 q.append((nr, nc, depth + 1))
 
-print(bfs())
+    return None
+
+result = bfs()
+print(result if result else -1)
