@@ -6,15 +6,13 @@ bool isContiguousSubsequence(int a[], int sizeA, int b[], int sizeB) {
     for (int i{}; i < sizeA; ) {
         if (a[i] == b[0]) {
             int j { 0 };
-            while (a[i] == b[j]) {
+            while (j < sizeB && i < sizeA && a[i] == b[j]) {
                 ++i;
                 ++j;
             }
             if (j == sizeB) {
                 return true;
-            } else {
-                ++i;
-            }
+            } 
         } else {
             ++i;
         }
