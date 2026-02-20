@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool isPalindrome(string s) {
+bool isPalindrome(string &s) {
     int n = s.size();
     for (int i{}; i < n / 2; ++i) {
         if (s[i] != s[n - 1 - i]) return false;
