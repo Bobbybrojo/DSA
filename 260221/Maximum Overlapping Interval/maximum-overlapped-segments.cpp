@@ -15,7 +15,7 @@ int main() {
 
     int slots[200]{0};
     for (int i{}; i < n; ++i) {
-        for (int j{x1[i]}; j <= x2[i]; ++j) {
+        for (int j{x1[i] + 100}; j <= x2[i] + 100; ++j) {
             slots[j] += 1;
         }
     }
