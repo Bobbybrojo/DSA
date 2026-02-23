@@ -23,7 +23,8 @@ int main() {
 
 
         if (dir[i] == 'L') {
-            for (int j{position}; j > position - amt; --j) {
+
+            for (int j{position}; j >= position - amt; --j) {
                 if (seen[j] == 1)
                     seen[j] = 3;
                 else if (seen[j] != 3) 
@@ -46,7 +47,7 @@ int main() {
         if (amt == 3) total++;
     }
     
-    cout << total + 1;
+    cout << total;
 
     return 0;
 }
