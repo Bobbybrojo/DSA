@@ -24,7 +24,7 @@ int main() {
 
         if (dir[i] == 'L') {
 
-            for (int j{position}; j >= position - amt; --j) {
+            for (int j{position - 1}; j >= position - amt; --j) {
                 if (seen[j] == 1)
                     seen[j] = 3;
                 else if (seen[j] != 3) 
