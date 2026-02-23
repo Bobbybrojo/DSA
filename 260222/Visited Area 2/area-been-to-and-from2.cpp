@@ -15,7 +15,7 @@ int main() {
     }
 
     int total{};
-    std::unordered_map<int, int> seen{0};
+    std::unordered_map<int, int> seen; // 0=unvisited, 1=right only, 2=left only, 3=both
     int position = 0;
 
     for (int i{}; i < n; ++i) {
@@ -23,13 +23,19 @@ int main() {
 
 
         if (dir[i] == 'L') {
-            for (int j{position - 1}; j >= position - amt; --j) {
-                seen[j]++;
+            for (int j{position}; j > position - amt; --j) {
+                if (seen[j] == 1)
+                    seen[j] = 3;
+                else if (seen[j] != 3) 
+                    seen[j] = 2;   
             }
             position -= amt;
         } else {
-            for (int j{position + 1}; j <= position + amt; ++j) {
-                seen[j]++;
+            for (int j{position}; j < position + amt; ++j) {
+                if (seen[j] == 2)
+                    seen[j] = 3;
+                else if (seen[j] != 3) 
+                    seen[j] = 1;
             }
             position += amt;
         }
@@ -37,10 +43,10 @@ int main() {
 
 
     for (auto& [pos, amt] : seen) {
-        if (amt >= 2) total += 1;
+        if (amt == 3) total++;
     }
     
-    cout << total;
+    cout << total + 1;
 
     return 0;
 }
