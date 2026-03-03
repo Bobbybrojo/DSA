@@ -35,9 +35,10 @@ int main() {
     for (int i{}; i < pos1.size(); ++i) {
         if (pos1[i] == pos2[i]) {
             cout << i + 1;
-            break;
+            return 0;
         }
     }
+    cout << -1;
 
     return 0;
 }
