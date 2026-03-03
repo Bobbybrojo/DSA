@@ -12,7 +12,7 @@ int main() {
         cin >> arr[i];
     }
 
-    int count{1};
+    int count{0};
     int max_count{0};
     int last;
     for (int i{0}; i < N; ++i) {
