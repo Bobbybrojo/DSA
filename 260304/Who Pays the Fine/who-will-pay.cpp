@@ -17,9 +17,11 @@ int main() {
         studentFines[student[i]] += 1;
         if (studentFines[student[i]] >= K) {
             cout << student[i];
-            break;
+            return 0;
         }
     }
+
+    cout << -1;
 
     return 0;
 }
