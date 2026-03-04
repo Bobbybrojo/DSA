@@ -25,7 +25,7 @@ int main() {
 
     int currPos2{0};
     std::vector<int> pos2;
-    for (int i{}; i < N; ++i) {
+    for (int i{}; i < M; ++i) {
         for (int j{}; j < t2[i]; ++j) {
             currPos2 += v2[i];
             pos2.push_back(currPos2);
