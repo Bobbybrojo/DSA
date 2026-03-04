@@ -12,10 +12,10 @@ int main() {
         cin >> student[i];
     }
 
-    int studentFines[N]{0};
+    int studentFines[N + 1]{0};
     for (int i{}; i < M; ++i) {
         studentFines[student[i]] += 1;
-        if (studentFines[i] >= K) {
+        if (studentFines[student[i]] >= K) {
             cout << student[i];
             break;
         }
