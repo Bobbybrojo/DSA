@@ -10,7 +10,7 @@ int selectPivot(int arr[], int low, int high) {
     int size = high - low + 1;
 
     if (size <= 3) {
-        return high;
+        return arr[high];
     }
 
     int mid = (low + high) / 2;
