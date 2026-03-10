@@ -3,9 +3,10 @@
 using namespace std;
 
 void merge(int arr[], int mergedArr[], int low, int mid, int high) {
-    int i = low, j = mid + 1;
+    int i = low, 
+        j = mid + 1,
+        k = low;
 
-    int k = low;
     while (i <= mid && j <= high) {
         if (arr[i] <= arr[j]) {
             mergedArr[k] = arr[i];
@@ -30,16 +31,18 @@ void merge(int arr[], int mergedArr[], int low, int mid, int high) {
         k++;
     }
 
-    std::copy(mergedArr, mergedArr + high + 1, arr);
+    for (int idx{low}; idx <= high; idx++) {
+        arr[idx] = mergedArr[idx];
+    }
 }
 
 void mergeSort(int arr[], int mergedArr[], int low, int high) {
-    if (low < high) {
-        int mid = (low + high) / 2;
-        mergeSort(arr, mergedArr, low, mid);
-        mergeSort(arr, mergedArr, mid + 1, high);
-        merge(arr, mergedArr, low, mid, high);
-    }
+    if (low >= high) return;
+
+    int mid = (low + high) / 2;
+    mergeSort(arr, mergedArr, low, mid);
+    mergeSort(arr, mergedArr, mid + 1, high);
+    merge(arr, mergedArr, low, mid, high);
 }
 
 int n;
