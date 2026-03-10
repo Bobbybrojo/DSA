@@ -27,10 +27,11 @@ int main() {
         std::vector<int> newArr[10];
         for (int i{}; i < n; ++i) {
             string s = std::to_string(arr[i]);
-            if (pos >= s.size()) {
+            int charIdx = pos - (k - (int)s.size());
+            if (charIdx < 0) {
                 newArr[0].push_back(arr[i]);
             } else {
-                newArr[s[pos] - '0'].push_back(arr[i]);
+                newArr[s[charIdx] - '0'].push_back(arr[i]);
             }
         }
 
