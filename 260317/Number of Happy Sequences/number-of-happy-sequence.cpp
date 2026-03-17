@@ -20,11 +20,13 @@ int main() {
     for (int r{}; r < n; ++r) {
         int prev{grid[r][0]};
         int seqLen{1};
+
+        if (seqLen >= m) {
+            happySequences++;
+            continue;
+        }
+
         for (int i{1}; i < n; ++i) {
-            if (seqLen >= m) {
-                happySequences++;
-                break;
-            }
 
             if (grid[r][i] == prev) {
                 seqLen += 1;
@@ -43,12 +45,13 @@ int main() {
     for (int c{}; c < n; ++c) {
         int prev{grid[0][c]};
         int seqLen{1};
-        for (int i{1}; i < n; ++i) {
-            if (seqLen >= m) {
-                happySequences++;
-                break;
-            }
 
+        if (seqLen >= m) {
+            happySequences++;
+            continue;
+        }
+
+        for (int i{1}; i < n; ++i) {
             if (grid[i][c] == prev) {
                 seqLen += 1;
                 if (seqLen >= m) {
