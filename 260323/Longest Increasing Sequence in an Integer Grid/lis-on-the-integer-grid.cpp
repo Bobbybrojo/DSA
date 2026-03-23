@@ -13,7 +13,7 @@ bool in_range(int r, int c, int n) {
 
 int main() {
     int n;
-    int grid[100][100];
+    int grid[MAX_N][MAX_N];
     cin >> n;
 
     for (int i = 0; i < n; i++) {
