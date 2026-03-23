@@ -3,6 +3,8 @@
 #include <tuple>
 #include <vector>
 
+#define MAX_N 500
+
 using namespace std;
 
 bool in_range(int r, int c, int n) {
@@ -29,7 +31,7 @@ int main() {
     sort(cells.begin(), cells.end());
 
     // Initialize dp table
-    int dp[n][n];
+    int dp[MAX_N][MAX_N];
     for (int r = 0; r < n; ++r) {
         for (int c = 0; c < n; ++c) {
             dp[r][c] = 1;
