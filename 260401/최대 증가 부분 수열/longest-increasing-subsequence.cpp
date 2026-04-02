@@ -31,7 +31,7 @@ int main() {
         dp[i] = maxLen + 1;
     }
 
-    cout << *max_element(dp, dp + N + 1);
+    cout << *max_element(dp, dp + N);
 
     return 0;
 }
