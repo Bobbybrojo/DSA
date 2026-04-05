@@ -28,7 +28,7 @@ int main() {
     for (int i{1}; i < m; ++i) dp[0][i] = -1;
 
     for (int r{1}; r < n; ++r) {
-        for (int c{1}; c < n; ++c) {
+        for (int c{1}; c < m; ++c) {
             int maxCells = -1;
             for (int j{1}; r - j >= 0; ++j) {
                 for (int k{1}; c - k >= 0; ++k) {
