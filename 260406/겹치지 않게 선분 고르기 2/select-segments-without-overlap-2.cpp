@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -15,6 +16,15 @@ int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> x1[i] >> x2[i];
+    }
+
+    // Sort the segments by starting point
+    pair<int,int> segs[1000];
+    for (int i{}; i < n; ++i) segs[i] = {x1[i], x2[i]};
+    sort(segs, segs + n);
+    for (int i{}; i < n; ++i) {
+        x1[i] = segs[i].first;
+        x2[i] = segs[i].second;
     }
 
     // DP[i] represents the maximum number of non-overlapping segments that
