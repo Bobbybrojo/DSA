@@ -28,12 +28,15 @@ int main() {
 
     for (int i{1}; i <= m; ++i) {
         dp[i] = INT_MAX;
-        for (int j{}; j < i; ++j) {
-            for (int c{}; c < n; ++c) {
-                if (j + coins[c] == i && dp[j] != -1) {
-                    dp[i] = min(dp[i], dp[j] + 1);
-                }
-            }
+
+        for (int c{}; c < n; ++c) {
+            int j = i - coins[c];
+
+            if (coins[c] > i) break;
+
+            if (dp[j] != -1) {
+                dp[i] = min(dp[i], dp[j] + 1);
+            }    
         }
 
         if (dp[i] == INT_MAX) dp[i] = -1;
