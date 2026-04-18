@@ -4,10 +4,11 @@
 using namespace std;
 
 int n;
+//   start, end, price
 tuple<int, int, int> jobs[1000];
 
 bool overlapping(tuple<int, int, int>& j1, tuple<int, int, int>& j2) {
-    return !(get<1>(j1) < get<0>(j2) && get<1>(j2) < get<1>(j1));
+    return !(get<1>(j1) < get<0>(j2) || get<1>(j2) < get<0>(j1));
 }
 
 int main() {
@@ -35,6 +36,7 @@ int main() {
         }
     }
 
+    // Print answer
     cout << *max_element(dp, dp + n);
 
 
