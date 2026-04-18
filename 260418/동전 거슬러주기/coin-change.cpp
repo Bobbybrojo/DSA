@@ -35,6 +35,8 @@ int main() {
                 }
             }
         }
+
+        if (dp[i] == INT_MAX) dp[i] = -1;
     }
 
     int ans = dp[m] != INT_MAX ? dp[m] : -1;
