@@ -20,8 +20,8 @@ int main() {
 
     for (int i{0}; i <= n; ++i) {
         for (int j{}; j < 3; ++j) {
-            if (i - arr[j] >= 0 && dp[i - arr[j]] != 0) {
-                dp[i] += (dp[i - arr[j]]) % 10007;
+            if (i - arr[j] >= 0) {
+                dp[i] = (dp[i] + dp[i - arr[j]]) % 10007;
             }
         }
     }
